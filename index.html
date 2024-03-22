@@ -2,183 +2,11 @@
 <html lang="pt-br">
   <head>
     <meta charset="UTF-8" />
+    <link rel="stylesheet" href="style.css">
     <title>Página do Pokémon Squirtle</title>
-    <style>
-      /* Reset de estilos para garantir consistência em diferentes navegadores */
-      body,
-      h1,
-      h2,
-      p,
-      ul,
-      ol,
-      li,
-      figure,
-      table,
-      th,
-      td {
-        margin: 0;
-        padding: 0;
-      }
-
-      main {
-        max-width: 80vw;
-        margin: 0 auto;
-      }
-
-      main > section {
-        padding: 20px;
-      }
-
-      p {
-        margin-bottom: 16px;
-      }
-
-      ul li {
-        margin-left: 20px;
-      }
-
-      body {
-        font-family: 'Arial', sans-serif;
-        line-height: 1.6;
-        color: #333;
-        background-color: #f4f4f4;
-      }
-
-      header {
-        background-color: #007bff;
-        color: #fff;
-        text-align: center;
-        padding: 20px;
-      }
-
-      header h1 {
-        font-size: 24px;
-      }
-
-      section h1,
-      section h2,
-      section h3 {
-        margin-bottom: 8px;
-      }
-
-      article h1,
-      article h2,
-      article h3 {
-        margin-bottom: 10px;
-      }
-
-      nav ul {
-        list-style: none;
-        display: flex;
-        justify-content: center;
-        background-color: #343a40;
-        padding: 10px;
-        border-radius: 5px;
-        margin: 0 0 20px;
-      }
-
-      nav li a:hover{
-        color: #ffc107;
-      }
-
-      nav a {
-        text-decoration: none;
-        color: #fff;
-        font-weight: bold;
-      }
-
-      th {
-        padding: 10px 24px;
-      }
-
-      tr {
-        text-align: center;
-      }
-
-      main section,
-      main article,
-      main table {
-        color: black;
-        background-color: #fff;
-        padding: 20px;
-        border-radius: 5px;
-        box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
-        margin-bottom: 20px;
-      }
-
-      article {
-        background-color: #ffc107;
-        color: #fff;
-      }
-
-      footer {
-        background-color: #343a40;
-        color: #fff;
-        padding: 20px;
-        text-align: center;
-        bottom: 0;
-        width: 100%;
-      }
-
-      footer a {
-        color: #ffc107;
-        text-decoration: none;
-      }
-
-      #curiosidades ul {
-      list-style-type: none; 
-    }
-
-    #curiosidades li::before {
-      content: "\1F50D"; 
-      display: inline-block;
-      margin-right: 5px; 
-    }
-
-    #evolucao ul{
-      display: flex;
-    }
-
-    section ul{
-        justify-content: space-between;
-        list-style: none;
-        text-align: left;
-    }
-
-    #recursos li{
-      list-style-type: disc
-    }
-
-    section ul a:hover {
-        opacity: 0.8;
-      }
-
-    footer a:hover {
-        opacity: 0.8;
-      }
-
-    .footer__1{
-        color:white
-    }
-    .footer__2{
-        color:orangered
-    }
-    .footer__3{
-        color:limegreen
-    }
-
-    #evolucao p{
-      text-align: center;
-    }
-
-    #evolucao h3{
-       text-align: left;       
-    }
-
-    </style>
   </head>
-  <body>
-    <header>
+  <body>.
+    <header id="header">
       <h1>Squirtle</h1>
     </header>
 
@@ -196,10 +24,15 @@
     <main>
       <section id="info-squirtle" aria-labelledby="info-squirtle-label">
         <h2 id="info-squirtle-label">Informações sobre Squirtle</h2>
-        <img
+        <div class="img-squirtle">
+        <img class="img-squirtle-1"
           src="https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/7.png"
           alt="Squirtle - Pokémon do tipo Água"
         />
+        <img  class="img-squirtle-2" 
+          src="https://archives.bulbagarden.net/media/upload/thumb/7/79/Squirtle_SSBU.png/200px-Squirtle_SSBU.png" 
+          alt="Squirtle - Pokémon do tipo Água">
+        </div>
         <p>
           Squirtle é um Pokémon do tipo Água. É o Pokémon inicial da região de
           Kanto e evolui para Wartortle.
@@ -217,7 +50,7 @@
 
       <section id="curiosidades" aria-labelledby="curiosidades-label">
         <h2 id="curiosidades-label">Curiosidades</h2>
-        <ul>
+        <ul class="curiosidades-list" >
           <li>Squirtle é um dos Pokémon mais populares e adoráveis.</li>
           <li>
             Seu nome deriva das palavras "squirrel" (esquilo) e "turtle"
@@ -276,28 +109,47 @@
 
       <section id="evolucao" aria-labelledby="evolucao-label">
         <h2 id="evolucao-label">Evoluções</h2>
-        <h3> (Clique em uma imagem para acessar a pagina da evolução)</h3>
         <ul>
-            <li>
-              <a href="https://bulbapedia.bulbagarden.net/wiki/Squirtle_(Pokémon)"><img src="https://assets.pokemon.com/assets/cms2/img/pokedex/detail/007.png" alt="Squirtle - Pokémon do tipo Água"/></a>
-                <p><strong>1.Squirtle</strong></p></li>
-            <li>
-              <a href="https://bulbapedia.bulbagarden.net/wiki/Wartortle_(Pokémon)"><img src="https://assets.pokemon.com/assets/cms2/img/pokedex/detail/008.png" alt="Wartortle - Pokémon do tipo Água"/></a>
-                <p><strong>2.Wartortle</strong></p></li>
-            <li>
-                <a href="https://bulbapedia.bulbagarden.net/wiki/Blastoise_(Pokémon)"><img src="https://assets.pokemon.com/assets/cms2/img/pokedex/detail/009.png" alt="Blastoise - Pokémon do tipo Água"/></a>
-                <p><strong>3.Blastoise</strong></p></li>
-          </ul>
-      </section>
+          <li>
+            <figure>
+              <img
+                src="https://assets.pokemon.com/assets/cms2/img/pokedex/detail/007.png"
+                alt="Squirtle"
+              />
+              <figcaption>1. Squirtle</figcaption>
+            </figure>
+          </li>
 
+          <li>
+            <figure>
+              <img
+                src="https://assets.pokemon.com/assets/cms2/img/pokedex/detail/008.png"
+                alt="Wartortle"
+              />
+              <figcaption>2. Wartortle</figcaption>
+            </figure>
+          </li>
+
+          <li>
+            <figure>
+              <img
+                src="https://assets.pokemon.com/assets/cms2/img/pokedex/detail/009.png"
+                alt="Blastoise"
+              />
+              <figcaption>3. Blastoise</figcaption>
+            </figure>
+          </li>
+        </ul>
+      </section>
     </main>
+
     <footer aria-label="Rodapé">
       <p aria-label="Copyright">
         &copy; 2024 Página do Pokémon Squirtle. Todos os direitos reservados.
       </p>
-      <p><a href="#info-squirtle" class ="footer__1">Voltar para o topo</a></p>
-      <p><a href="mailto:contato@squirtlepage.com" class="footer__2">Contato via e-mail</a></p>
-      <p><a href="tel:+5555555555" class="footer__3">Telefone: (55) 5555-5555</a></p>
+      <p><a href="#header">Voltar para o topo</a></p>
+      <p><a href="mailto:contato@squirtlepage.com">Contato via e-mail</a></p>
+      <p><a href="tel:+5555555555">Telefone: (55) 5555-5555</a></p>
     </footer>
   </body>
 </html>
