@@ -1,75 +1,81 @@
 function changePageTitle(title) {
-  document.title = title
+  document.title = title;
 }
 
-function generateInfoSection(src, pokemonName) {
-  const h2 = document.createElement('h2')
-  h2.id = "info-pokemon-label"
-  h2.textContent = `Informações sobre ${pokemonName}`
+function generateInfoSection(sprites, pokemonName) {
+  const h2 = document.createElement('h2');
+  h2.id = "info-pokemon-label";
+  h2.textContent = `Informações sobre ${pokemonName}`;
 
-  const img = document.querySelector('img')
-  img.src = src
-  img.alt = `Imagem do pokemon ${pokemonName}`
+  const img = document.querySelector('img');
+  img.src = sprites[0];
+  img.alt = `Imagem do pokemon ${pokemonName}`;
+  let currentIndex = 0;
 
-  const section = document.querySelector('#info-pokemon')
+  img.addEventListener('click', () => {
+    currentIndex = (currentIndex + 1) % sprites.length;
+    img.src = sprites[currentIndex];
+  });
 
-  section.appendChild(h2)
-  section.appendChild(img)
+  const section = document.querySelector('#info-pokemon');
+  section.appendChild(h2);
+  section.appendChild(img);
 }
 
 async function getPokemonData(name) {
-  // fetch(`https://pokeapi.co/api/v2/pokemon/${name}`)
-  //   .then((fetchData) => {
-  //     return fetchData.json()
-  //   })
-  //   .then((jsonData) => generateInfoSection(jsonData.sprites.front_default, name))
-  //   .catch((error) => console.error(error))
-
   try {
-    const data = await fetch(`https://pokeapi.co/api/v2/pokemon/${name}`)
+    const data = await fetch(`https://pokeapi.co/api/v2/pokemon/${name}`);
+    const jsonData = await data.json();
 
-    const jsonData = await data.json()
-
-    generateInfoSection(jsonData.sprites.front_default, name)
-
-    var spritesArray = Object.values(sprites);
-
-    spritesArray = spritesArray.filter(item => typeof item === 'string');
-
-    var currentIndex = 0;
-
-    exibirProximaImagem();
-
+    const spritesArray = Object.values(jsonData.sprites).filter(sprite => typeof sprite === 'string');
+    generateInfoSection(spritesArray, name);
   } catch (error) {
-    console.error(error)
+    console.error(error);
   }
 }
 
 function getSearchParams() {
+  // Early return -> Caso location search, não faz nada.
   if (!location.search) {
-    return
+    return;
   }
-
-  const urlSearchParams = new URLSearchParams(location.search)
-
-  const pokemonName = urlSearchParams.get('name')
-
-  changePageTitle(`Pagina do ${pokemonName}`)
-  getPokemonData(pokemonName)
-}
-
-document.addEventListener('DOMContentLoaded', function () {
-  getSearchParams()
-})
-
-function exibirProximaImagem() {
-  currentIndex++;
-
-  if (currentIndex >= spritesArray.length) {
-      currentIndex = 0;
-  }
+  // URLSearchParams é uma classe que facilita a manipulação de query strings
+  const urlSearchParams = new URLSearchParams(location.search);
   
-  imagem.src = spritesArray[currentIndex];
+  // Pegando o valor do parâmetro name
+  const pokemonName = urlSearchParams.get('name');
+  
+  changePageTitle(`Pagina do ${pokemonName}`);
+  getPokemonData(pokemonName);
 }
 
-imagem.addEventListener('click', exibirProximaImagem);
+function updateCounter() {
+  const storageKey = 'pageVisitCount';
+  const now = new Date();
+  const formattedDate = new Intl.DateTimeFormat('pt-BR', {
+    year: 'numeric', month: '2-digit', day: '2-digit',
+    hour: '2-digit', minute: '2-digit'
+  }).format(now);
+
+  let visitData = localStorage.getItem(storageKey);
+  if (visitData) {
+    visitData = JSON.parse(visitData);
+    visitData.count++;
+    visitData.lastVisit = formattedDate;
+  } else {
+    visitData = { count: 1, lastVisit: formattedDate };
+  }
+
+  localStorage.setItem(storageKey, JSON.stringify(visitData));
+
+  const footer = document.querySelector('footer');
+  const visitInfoParagraph = document.createElement('p');
+  visitInfoParagraph.textContent = `Esta página foi visitada ${visitData.count} vezes. A última visita foi: ${visitData.lastVisit}`;
+
+
+  footer.appendChild(visitInfoParagraph);
+}
+document.addEventListener('DOMContentLoaded', function () {
+  getSearchParams();
+  updateCounter();
+});
