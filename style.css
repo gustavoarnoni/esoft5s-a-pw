@@ -19,27 +19,43 @@ td {
 }
 
 /* Estilos gerais */
+
 body {
   font-family: 'Arial', sans-serif;
   color: #333;
   background-color: #f4f4f4;
+  height: 100vh;
+  display: flex;
+  flex-direction: column;
 }
 
 main {
   display: grid;
-  grid-template-columns: repeat(2, minmax(0, 1fr));
+  grid-template-columns: repeat(2, 1fr);
   gap: 20px;
-  justify-items: center;
-  margin: 20px;
+  margin: 0 20px;
 }
 
-main > section,
-main > article {
+@media (max-width: 768px) {
+  main {
+    grid-template-columns: 1fr;
+  }
+}
+
+main > section {
+  padding: 20px;
+}
+
+main section,
+main article {
   color: black;
   background-color: #fff;
   padding: 20px;
   border-radius: 5px;
   box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+  margin-bottom: 20px;
+  display: flex;
+  flex-direction: column;
 }
 
 section h1,
@@ -63,6 +79,7 @@ ul li {
 }
 
 /* Header */
+
 header {
   background-color: #007bff;
   color: #fff;
@@ -75,7 +92,23 @@ header h1 {
   font-size: 24px;
 }
 
+header a {
+  text-decoration: none;
+  color: white;
+}
+
+@media (max-width: 768px) {
+  header h1 {
+    font-size: 20px;
+  }
+
+  h2 {
+    font-size: 18px;
+  }
+}
+
 /* Lista de navegação */
+
 nav ul {
   list-style: none;
   display: flex;
@@ -87,11 +120,18 @@ nav ul {
   margin-bottom: 20px;
 }
 
+@media (max-width: 768px) {
+  nav ul {
+    flex-direction: column;
+    align-items: center;
+  }
+}
+
 nav a {
   text-decoration: none;
   color: #fff;
   font-weight: bold;
-  transition: color 0.3s ease-in-out;
+  transition: color 0.8s;
 }
 
 nav a:hover {
@@ -99,6 +139,13 @@ nav a:hover {
 }
 
 /* Seções */
+
+#info-squirtle img {
+  width: 150px;
+  height: 150px;
+  align-self: center;
+}
+
 #info-squirtle div {
   display: flex;
   justify-content: space-evenly;
@@ -107,19 +154,25 @@ nav a:hover {
 
 #info-squirtle img,
 #evolucao img {
-  width: 150px;
-  height: 150px;
-  align-self: center;
   transition: transform 0.3s ease-in-out;
+}
+
+#info-squirtle img:hover,
+#evolucao img:hover {
+  transform: scale(1.1);
+}
+
+#evolucao a {
+  text-decoration: none;
+  color: black;
 }
 
 #info-squirtle img:nth-of-type(2) {
   padding: 35px;
 }
 
-#info-squirtle img:hover,
-#evolucao img:hover {
-  transform: scale(1.1);
+#curiosidades li::marker {
+  content: '🔍';
 }
 
 #curiosidades ul {
@@ -128,15 +181,18 @@ nav a:hover {
   gap: 12px;
 }
 
-#curiosidades li::marker {
-  content: '🔍';
-}
-
 #evolucao ul {
   display: flex;
   justify-content: space-around;
   flex-wrap: wrap;
   list-style: none;
+}
+
+@media (max-width: 768px) {
+  #evolucao ul {
+    flex-direction: column;
+    align-items: center;
+  }
 }
 
 #evolucao img {
@@ -151,19 +207,35 @@ nav a:hover {
   margin-top: 16px;
 }
 
-#recursos ul {
+@media (max-width: 768px) {
+  #evolucao figcaption {
+    font-size: 16px;
+  }
+}
+
+article {
+  background-color: #ffc107;
+  color: #fff;
+}
+
+/* Links */
+
+#recursos a,
+footer a {
   transition: opacity 0.3s ease-in-out;
 }
 
-#recursos ul li a {
-  transition: opacity 0.3s ease-in-out;
+a[target='_blank'] {
+  color: #4592c4;
+  font-weight: bold;
 }
 
-#recursos ul:hover {
+a[target='_blank']:hover {
   opacity: 0.8;
 }
 
 /* Footer */
+
 footer {
   background-color: #343a40;
   color: #fff;
@@ -171,8 +243,9 @@ footer {
   bottom: 0;
   display: flex;
   flex-direction: column;
-  gap: 16px;
   align-items: center;
+  gap: 16px;
+  margin-top: auto;
 }
 
 footer p {
@@ -181,7 +254,6 @@ footer p {
 
 footer a {
   text-decoration: none;
-  transition: color 0.3s ease-in-out;
 }
 
 footer a[href*='#'] {
@@ -199,39 +271,19 @@ footer a[href*='tel'] {
 footer a[href]:hover {
   opacity: 0.8;
 }
-
-/* <768px*/
-
-@media (max-width: 767px) {
-  main {
-    grid-template-columns: 1fr;
+/* 
+@keyframes fadeIn {
+  0% {
+    opacity: 0;
+    transform: translateY(-20px);
   }
-
-  nav ul {
-    flex-direction: column;
-    align-items: center;
-  }
-
-  #evolucao ul {
-    flex-direction: column;
-    align-items: center;
-  }
-
-  #evolucao img {
-    width: 100px;
-    height: 100px;
-  }
-
-  #evolucao figcaption {
-    font-size: 16px;
-  }
-
-  header h1 {
-    font-size: 20px;
-  }
-
-  section h2,
-  article h2 {
-    font-size: 18px;
+  100% {
+    opacity: 1;
+    transform: translateY(0);
   }
 }
+
+main > section,
+main > article {
+  animation: fadeIn 0.5s ease-in-out forwards;
+} */
